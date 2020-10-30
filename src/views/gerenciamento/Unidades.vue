@@ -2,7 +2,7 @@
   <div>
     <v-container fluid>
       <DialogContainer :dialog="dialog">
-        <ClientesTabs :tab="tab" :mode="mode" :usuario="usuario" />
+        <UnidadesTabs :tab="tab" :mode="mode" :usuario="usuario" />
         <div class="d-flex justify-end">
           <v-btn v-if="mode === 'submit'" color="primary">Adicionar</v-btn>
           <v-btn v-if="mode === 'update' && tab.number !== 1" color="warning"
@@ -14,7 +14,7 @@
         </div>
       </DialogContainer>
       <v-card class="mt-8 pa-2">
-        <v-btn
+        <!-- <v-btn
           @click="openInSubmitMode"
           :fixed="$vuetify.breakpoint.xs ? true : false"
           :absolute="$vuetify.breakpoint.xs ? false : true"
@@ -25,7 +25,7 @@
           color="primary"
         >
           <v-icon>mdi-plus</v-icon>
-        </v-btn>
+        </v-btn> -->
         <v-data-table :items="usuarios.data" :headers="headers">
           <template v-slot:item.actions="{ item, index }">
             <v-tooltip top>
@@ -43,11 +43,10 @@
 
             <v-tooltip top>
               <template v-slot:activator="{ on }">
-                <v-icon v-on="on" color="error" @click="removeDispatch(item)"
+                <v-icon  color="error" @click="removeDispatch(item)"
                   >mdi-delete</v-icon
                 >
               </template>
-              <span>Excluir</span>
             </v-tooltip>
           </template>
         </v-data-table>
@@ -58,7 +57,7 @@
 
 <script>
 import DialogContainer from "@/layout/dialog/DialogContainer";
-import ClientesTabs from "@/components/gerenciamento/clientes/ClientesTabs";
+import UnidadesTabs from "@/components/gerenciamento/unidades/UnidadesTabs";
 import dialog from "@/mixins/dialog";
 
 import axios from "../../plugins/axios";
@@ -66,7 +65,7 @@ import axios from "../../plugins/axios";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  components: { DialogContainer, ClientesTabs },
+  components: { DialogContainer, UnidadesTabs },
   mixins: [dialog],
   data: () => ({
     mode: "submit",
